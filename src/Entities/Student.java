@@ -11,6 +11,7 @@ import java.util.List;
 import Student.Utilities.StudentOrderByAge;
 import Student.Utilities.StudentOrderByHeigh;
 import Student.Utilities.StudentOrderByName;
+import Student.Utilities.StudentOrderByStack;
 
 public class Student {
 
@@ -156,7 +157,7 @@ public class Student {
 			
 		}
 				
-		Comparator<Student> comparatorAluno = new StudentOrderByAge();
+		Comparator<Student> comparatorAluno = new StudentOrderByHeigh();
 		Collections.sort(bigger, comparatorAluno);
 		Collections.sort(smaller, comparatorAluno);
 		
