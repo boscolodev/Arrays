@@ -8,20 +8,21 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Utilities.StudentOrderByHeigh;
-import Utilities.StudentOrderByName;
+import StudentUtilities.StudentOrderByAge;
+import StudentUtilities.StudentOrderByHeigh;
+import StudentUtilities.StudentOrderByName;
 
-public class Aluno extends StudentOrderByHeigh {
+public class Student {
 
 	private String nome;
 	private Integer idade;
 	private Double altura;
 
-	public Aluno() {
+	public Student() {
 
 	}
 
-	public Aluno(String nome, Integer idade, Double altura) {
+	public Student(String nome, Integer idade, Double altura) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
@@ -57,12 +58,12 @@ public class Aluno extends StudentOrderByHeigh {
 		return "Aluno [nome=" + nome + ", idade=" + idade + ", altura=" + altura + "]";
 	}
 
-	/**Método de leitura e conversão do arquivo CSV para uma lista */
-	public List<Aluno> parseList() {
+	/** Método de leitura e conversão do arquivo CSV para uma lista */
+	public List<Student> parseList() {
 
-		List<Aluno> listAluno = new ArrayList<Aluno>();
-		
-		//Caminho do Arquivo
+		List<Student> listAluno = new ArrayList<Student>();
+
+		// Caminho do Arquivo
 		String path = "C:/eclipse-workspace/OrdenacaoArray/alunos.csv";
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -71,27 +72,27 @@ public class Aluno extends StudentOrderByHeigh {
 			String line = br.readLine();
 
 			line = br.readLine();
-			
+
 			while (line != null) {
-				
+
 				// Filtrando contéudo do csv e transformando em vetor
 				String[] vect = line.split("[;]");
-				
+
 				for (int i = 0; i < vect.length; i++) {
-                    //Trocar a , por . no vetor
-                    vect[i] = vect[i].replace(",", ".");
-                }
-				
-				//Atribuição e conversão de dados se necessário do String para tipos da classe
+					// Trocar a , por . no vetor
+					vect[i] = vect[i].replace(",", ".");
+				}
+
+				// Atribuição e conversão de dados se necessário do String para tipos da classe
 				String nome = vect[0];
 				Integer idade = Integer.parseInt(vect[1]);
 				Double altura = Double.parseDouble(vect[2]);
 
-				//Criação de um novo objeto
-				Aluno aluno = new Aluno(nome, idade, altura);
-				//Adicionando objeto na lista
+				// Criação de um novo objeto
+				Student aluno = new Student(nome, idade, altura);
+				// Adicionando objeto na lista
 				listAluno.add(aluno);
-				//Lendo uma nova linha para o próximo registro
+				// Lendo uma nova linha para o próximo registro
 				line = br.readLine();
 			}
 //			for (Aluno a : listAluno) {
@@ -104,32 +105,49 @@ public class Aluno extends StudentOrderByHeigh {
 		return listAluno;
 	}
 
-	public List<Aluno> orderByHeigh(List<Aluno> list){
-		
-		Comparator<Aluno> comparatorAluno = new StudentOrderByHeigh();
+	public List<Student> orderByHeigh(List<Student> list) {
+
+		Comparator<Student> comparatorAluno = new StudentOrderByHeigh();
 		Collections.sort(list, comparatorAluno);
-		
-		for(int i=0; i< list.size(); i++) {
-			System.out.println("Nome: " + list.get(i).getNome());
-			System.out.println("Idade: "+list.get(i).getIdade());
-			System.out.println("Altura: "+list.get(i).getAltura());
+
+		for (int i = 0; i < list.size(); i++) {
+			printStudent(list, i);
 		}
-		 
+
 		return list;
 	}
-	
-	public List<Aluno> orderByName(List<Aluno> list){
-		
-		Comparator<Aluno> comparatorAluno = new StudentOrderByName();
+
+	public List<Student> orderByName(List<Student> list) {
+
+		Comparator<Student> comparatorAluno = new StudentOrderByName();
 		Collections.sort(list, comparatorAluno);
-		
-		for(int i=0; i< list.size(); i++) {
-			System.out.println("Nome: " + list.get(i).getNome());
-			System.out.println("Idade: "+list.get(i).getIdade());
-			System.out.println("Altura: "+list.get(i).getAltura());
+
+		for (int i = 0; i < list.size(); i++) {
+			printStudent(list, i);
+
 		}
-		 
+
 		return list;
-	}	
-	
+	}
+
+	public List<Student> orderByAge(List<Student> list) {
+
+		Comparator<Student> comparatorAluno = new StudentOrderByAge();
+		Collections.sort(list, comparatorAluno);
+
+		for (int i = 0; i < list.size(); i++) {
+			printStudent(list, i);
+		}
+
+		return list;
+	}
+
+	public void printStudent(List<Student> list, int i) {
+		String name = list.get(i).getNome();
+		Integer age = list.get(i).getIdade();
+		Double height = list.get(i).getAltura();
+		String msg = String.format("Nome: %s: ,Idade: %s, Altura: %.2f", name, age, height);
+		System.out.println(msg);
+	}
+
 }

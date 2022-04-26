@@ -1,12 +1,12 @@
-package Utilities;
+package StudentUtilities;
 
 import java.util.Comparator;
 
-import Entities.Aluno;
+import Entities.Student;
 
-public class StudentOrderByHeigh implements Comparator<Aluno> {
+public class StudentOrderByHeigh implements Comparator<Student> {
 
-	public int compare(Aluno pos1, Aluno pos2) {
+	public int compare(Student pos1, Student pos2) {
 		if (pos1.getAltura() < pos2.getAltura()) {
 			return -1;
 		}
