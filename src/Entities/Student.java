@@ -140,11 +140,51 @@ public class Student {
 		return list;
 	}
 
+	public List<Student> orderByStack(List<Student> list) {
+
+		List<Student> bigger  = new ArrayList<Student>();
+		List<Student> smaller = new ArrayList<Student>();
+		
+		for (int i = 0; i < list.size(); i++) {
+			
+			if (list.get(i).getAltura() > 1.60) {
+				bigger.add(list.get(i));
+			}
+			else {
+				smaller.add(list.get(i));				
+			}
+			
+		}
+				
+		Comparator<Student> comparatorAluno = new StudentOrderByAge();
+		Collections.sort(bigger, comparatorAluno);
+		Collections.sort(smaller, comparatorAluno);
+		
+		for (int i = 0; i < smaller.size(); i++) {
+			printStudent("Estudantes Abaixo de 1,60: ",smaller, i);
+		}
+
+		for (int i = 0; i < bigger.size(); i++) {
+			printStudent("Estudantes Acima de 1,60: ",bigger, i);
+		}
+		return list;
+	}
+	
+	/**Função de impressão de dados para otimização de Código */
 	public void printStudent(List<Student> list, int i) {
 		String name = list.get(i).getNome();
 		Integer age = list.get(i).getIdade();
 		Double height = list.get(i).getAltura();
 		String msg = String.format("Nome: %s: ,Idade: %s, Altura: %.2f", name, age, height);
+		System.out.println(msg);
+	}
+	
+	/**Função de impressão de dados para otimização de Código */
+	public void printStudent(String mensagem, List<Student> list, int i) {
+		String name = list.get(i).getNome();
+		Integer age = list.get(i).getIdade();
+		Double height = list.get(i).getAltura();
+		String msg = String.format("%s Nome: %s: ,Idade: %s, Altura: %.2f",mensagem, name, age, height);
 		System.out.println(msg);
 	}
 

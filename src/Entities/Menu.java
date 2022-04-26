@@ -12,8 +12,8 @@ public class Menu {
 		List<Student> listAluno = new ArrayList<Student>();
 		// Criando Objeto para chamar os métodos
 		Student student = new Student();
-		//Criando uma lista a partir do CSV
-		listAluno = student.parseList();		
+		// Criando uma lista a partir do CSV
+		listAluno = student.parseList();
 		// Definindo método de entrada de dados
 		Scanner sc = new Scanner(System.in);
 
@@ -24,6 +24,7 @@ public class Menu {
 			System.out.println("1. Lista Alunos por Ordem Alfabética: ");
 			System.out.println("2. Lista Alunos por Altura: ");
 			System.out.println("3. Lista Alunos por Idade: ");
+			System.out.println("4. Lista Alunos por Filas: ");
 			System.out.println("0. Sair: ");
 			System.out.println("Digite a opção desejada: ");
 			opt = sc.nextInt();
@@ -41,7 +42,10 @@ public class Menu {
 				student.orderByAge(listAluno);
 				break;
 			}
-			default:
+			case 4: {
+				student.orderByStack(listAluno);
+				break;
+			}default:
 				break;
 			}
 
