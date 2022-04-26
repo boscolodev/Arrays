@@ -157,7 +157,7 @@ public class Student {
 			
 		}
 				
-		Comparator<Student> comparatorAluno = new StudentOrderByHeigh();
+		Comparator<Student> comparatorAluno = new StudentOrderByStack();
 		Collections.sort(bigger, comparatorAluno);
 		Collections.sort(smaller, comparatorAluno);
 		
