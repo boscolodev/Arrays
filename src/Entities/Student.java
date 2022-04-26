@@ -8,9 +8,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import StudentUtilities.StudentOrderByAge;
-import StudentUtilities.StudentOrderByHeigh;
-import StudentUtilities.StudentOrderByName;
+import Student.Utilities.StudentOrderByAge;
+import Student.Utilities.StudentOrderByHeigh;
+import Student.Utilities.StudentOrderByName;
 
 public class Student {
 
@@ -101,7 +101,6 @@ public class Student {
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
-
 		return listAluno;
 	}
 
@@ -124,7 +123,6 @@ public class Student {
 
 		for (int i = 0; i < list.size(); i++) {
 			printStudent(list, i);
-
 		}
 
 		return list;
